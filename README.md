@@ -15,7 +15,7 @@ Use this command to clone
 ```
 git clone https://github.com/53k41iga/wpa2-psk-brute-force.git
 ```
-### Exeution file
+### Execution file
 You also can clone this project. In this project has ``` ex.exe ``` to run 
 Or you can download it on Github click [here](ex.exe)
 ## Author
