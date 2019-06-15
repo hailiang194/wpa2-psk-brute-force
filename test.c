@@ -9,10 +9,5 @@
 
 int main(int argc, char const *argv[])
 {
-	char test[] = "\t";
-
-	strip(test);
-
-	printf("\'%s\'\n", test);
 	return 0;
 }
