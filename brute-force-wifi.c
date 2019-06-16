@@ -25,7 +25,7 @@ void connectWifi(char *ssidName, char *password)
 	system(command);
 	remove("temp.txt");
 
-	sleep(30); //make sure wifi has been connected
+	sleep(10); //make sure wifi has been connected
 }
 
 short isConnected(void)
@@ -72,6 +72,8 @@ void bruteForce(char *ssidName, char * dictPath)
 
 	while((fgets(password, 200, dict)) != NULL)
 	{
+
+
 		printf("CHECKING : %s\n", password);
 
 		connectWifi(ssidName, password);
@@ -97,6 +99,11 @@ void bruteForce(char *ssidName, char * dictPath)
 
 		system(command);
 		remove("temp.txt");
+
+
+		if(feof(dict))
+			break;
+
 
 	}
 
