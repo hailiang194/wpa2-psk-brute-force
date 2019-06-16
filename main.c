@@ -51,9 +51,27 @@ int main(int argc, char *argv[])
 		printf("VISIBLE WPA2-PERSONAL WIFI:\n");
 
 		for(int i = 0; i < listNet.len; i++)
-			printf("\tNAME = %s\n", listNet.list[i].name);
+			printf("\tSSID %d, NAME = %s\n", i, listNet.list[i].name);
 
-		return 0;
+
+		int choose = -1;
+
+		while(choose < 0)
+		{
+			printf("SELECT ONE (SELECT %d TO EXIT )> ", listNet.len);
+
+			scanf("%d", &choose);
+
+			if((choose > 0) && (choose < listNet.len))
+			{
+				strcpy(ssidName, listNet.list[choose].name);
+				break;
+			}
+
+			if(choose == listNet.len)
+				exit(0);
+		}
+
 	}
 
 	bruteForce(ssidName, dictPath);
