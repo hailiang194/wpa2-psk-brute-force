@@ -36,7 +36,7 @@ void writeXML(char *path, char *ssidName, char *password)
 
 void writeSSIDConfig(FILE *xmlFile, char *ssidName)
 {
-	char hexName[2 * strlen(ssidName) + 1];
+	char hexName[1000];
 
 	strToHex(ssidName, hexName);
 	

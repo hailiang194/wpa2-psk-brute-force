@@ -1,26 +1,27 @@
-CC = cc
-FLAGS = -O3
+PHONY = all clean
+CC = cl
+FLAGS =
+ifeq ($(CC), cl)
+	OBJ_EXTENSION = .obj
+else
+	OBJ_EXTENSION = .o
+endif
 
-all: write-xml.o preprocess.o brute-force-wifi.o list-wifi.o main.o
+.SUFFIXES: .c $(OBJ_EXTENSION)
+SRC_DIR = .
+SRC = 	$(SRC_DIR)/write-xml.c \
+		$(SRC_DIR)/preprocess.c \
+		$(SRC_DIR)/brute-force-wifi.c \
+		$(SRC_DIR)/list-wifi.c \
+		$(SRC_DIR)/main.c
+
+OBJ = $(SRC:.c=$(OBJ_EXTENSION))
+
+all: $(OBJ)
 	$(CC) $(FLAGS) $? -o brute-force-exe
 
-write-xml.o: write-xml.c
-	$(CC) $(FLAGS) -c $? -o $@
+%$(OBJ_EXTENSION): %.c
+	$(CC) $(FLAGS) -c $*.c -o $*$(OBJ_EXTENSION)
 
-preprocess.o: preprocess.c
-	$(CC) $(FLAGS) -c $? -o $@
-
-brute-force-wifi.o: brute-force-wifi.c
-	$(CC) $(FLAGS) -c $? -o $@
-
-list-wifi-type.o: list-wifi-type.c
-	$(CC) $(FLAGS) -c $? -o $@
-
-list-wifi.o: list-wifi.c
-	$(CC) $(FLAGS) -c $? -o $@
-
-main.o: main.c
-	$(CC) $(FLAGS) -c $? -o $@
-
-clean: write-xml.o preprocess.o brute-force-wifi.o list-wifi.o main.o
-	rm -f $?
+clean: 
+	rm -f *$(OBJ_EXTENSION) *.exe

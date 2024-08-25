@@ -1,4 +1,5 @@
 #include "brute-force-wifi.h"
+#include <Windows.h>
 
 void connectWifi(char *ssidName, char *password)
 {
@@ -25,7 +26,7 @@ void connectWifi(char *ssidName, char *password)
 	system(command);
 	remove("temp.txt");
 
-	sleep(10); //make sure wifi has been connected
+	Sleep(10); //make sure wifi has been connected
 }
 
 short isConnected(void)

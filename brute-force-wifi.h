@@ -4,7 +4,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#ifdef _WIN32
+#include <io.h>
+#define access _access
+
+#else
 #include <unistd.h>
+#endif
 #include "write-xml.h"
 
 void connectWifi(char *ssidName, char *password);
